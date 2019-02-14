@@ -1,19 +1,32 @@
 ---
-title: "PAGnet: Pseudomonas aeruginosa Genomic network"
-author: "Hao Huang, Xiaolong Shao, Yingpeng Xie, Tingting Wang, Yingchao Zhang, Xin Wang, Xin Deng"
+title: "PAGnet: an integrated regulatory network in Pseudomonas aeruginosa "
+author: 
+- name: Hao Huang 
+  affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
+- name: Xiaolong Shao
+  affiliation: Key Laboratory of Molecular Microbiology and Technology, Ministry of Education, TEDA Institute of Biological Sciences and Biotechnology, Nankai University, 23 Hongda Street, Tianjin 300457
+- name: Yingpeng Xie
+  affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
+- name: Tingting Wang
+  affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
+- name: Yingchao Zhang
+  affiliation: Key Laboratory of Molecular Microbiology and Technology, Ministry of Education, TEDA Institute of Biological Sciences and Biotechnology, Nankai University, 23 Hongda Street, Tianjin 300457
+- name: Xin Wang
+  affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
+- name: Xin Deng
+  affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong 
 date: "`r Sys.Date()`"
-output:
-  prettydoc::html_pretty:
-    toc: true
-    theme: cayman
-    highlight: github
-  pdf_document:
-    toc: true
+package: PAGnet
+output: 
+        BiocStyle::pdf_document:
+          fig_width: 10
+          fig_height: 10
+        
+abstract: PAGnet is an R package to perform Master Regulator Analysis (MRA) in Pseudomonas aeruginosa Genomic netork (PAGnet).
 
 vignette: >
-  %\VignetteIndexEntry{PAGnet:Pseudomonas aeruginosa genomic network}
+  %\VignetteIndexEntry{HTSanalyzeR2: An R package for gene set enrichment and network analysis of various high-throughput data}
   %\VignetteEngine{knitr::rmarkdown}
-  %\usepackage[utf8]{inputenc}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -24,8 +37,6 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE,
                       fig.height = 4)
 ```
 
-##Abstract
-PAGnet is an R package to perform Master Regulator Analysis (MRA) in Pseudomonas aeruginosa Genomic netork (PAGnet).
 
 # Overview
 Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. Pseudomonas aeruginosa, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 19 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (Pseudomonas aeruginosa Genomic network) including 48 crosstalk targets.
@@ -50,7 +61,8 @@ The function `pagnet.mra` is used to perform MRA in PAGnet or user uploaded netw
   #Select T3SS related genes as signatures
   #run MRA
 
-  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, pValueCutoff = 0.05,pAdjustMethod="BH")
+  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, 
+                            pValueCutoff = 0.05,pAdjustMethod="BH")
   mra_results
 ```
 
