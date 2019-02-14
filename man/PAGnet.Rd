@@ -1,14 +1,14 @@
 \name{pagnet.mra}
 \alias{pagnet.mra}
-\title{Master regulator analysis based on PAGnet}
+\title{PAGnet: an integrated regulatory network in Pseudomonas aeruginosa}
 \usage{
-pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=t3ss, pValueCutoff=0.05, pAdjustMethod=NULL)
+pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=qs, pValueCutoff=0.05, pAdjustMethod=NULL)
 }
 \description{
-  This function perform master regulator analysis (MRA) over a list of regulons from PAGnet or user uploaded regulator network.
+  This function perform master regulator analysis (MRA) over a list of regulons from the default PAGnet or user uploaded regulator network for identification of key transcription factors mediating a biological process or pathway.
 }
 \arguments{
-  \item{rnet}{a regulatory network in Pseudomonas aeruginosa genomic netork.}
+  \item{rnet}{a regulatory network in Pseudomonas aeruginosa genomic netork.The user can choose to use the default PAVIRnet or to upload their own regulatory network in a predefined format}
    \item{tflist}{a list of transcription factor in regulatory network.}
    \item{signature}{interested gene sets.}
    \item{pValueCutoff}{a single numeric value specifying the cutoff for p-values considered significant.}
@@ -20,9 +20,11 @@ pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=t3ss, pValueCutoff=0.05
   data(PAGnet)
 
   #Use PAGnet as regulatory network
-  #Select T3SS related genes as signatures
+  #Select quorum sensing (QS) related genes as signatures
   #run MRA
 
-  pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, pValueCutoff = 0.05,pAdjustMethod="BH")
+  MRA_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, pValueCutoff = 0.05,pAdjustMethod="BH")
 
+  #Having completed master regulator analysis, a table will be returned
+  head(MRA_results)
 }

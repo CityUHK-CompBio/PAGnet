@@ -1,5 +1,5 @@
 ---
-title: "PAGnet: an integrated regulatory network in Pseudomonas aeruginosa "
+title: "PAGnet: an integrated regulatory network in Pseudomonas aeruginosa"
 author: 
 - name: Hao Huang 
   affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
@@ -22,7 +22,7 @@ output:
           fig_width: 10
           fig_height: 10
         
-abstract: PAGnet is an R package to perform Master Regulator Analysis (MRA) in Pseudomonas aeruginosa Genomic netork (PAGnet).
+abstract: PAGnet is an R package to perform Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
 
 vignette: >
   %\VignetteIndexEntry{HTSanalyzeR2: An R package for gene set enrichment and network analysis of various high-throughput data}
@@ -48,20 +48,27 @@ The PAGnet uncovered the intricate mechanism of virulence regulation and reveale
 library(PAGnet)
 ```
 # Quick Start
-### Master Regulator Analysis in PAGnet
-
-The function `pagnet.mra` is used to perform MRA in PAGnet or user uploaded network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution.
+### Master Regulator Analysis
+The user can choose to use the default PAVIRnet or to upload their own regulatory network in a predefined format.
 
 ```{r}
   library(PAGnet)
-
   data(PAGnet)
 
   #Use PAGnet as regulatory network
   #Select T3SS related genes as signatures
   #run MRA
+  head(PAGnet)
+  head(tf)
+  head(qs)
 
-  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, 
+```
+
+
+The function `pagnet.mra` is used to perform MRA in PAGnet or user uploaded network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution.Having completed master regulator analysis, a table will be returned.
+
+```{r}
+  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, 
                             pValueCutoff = 0.05,pAdjustMethod="BH")
   mra_results
 ```
