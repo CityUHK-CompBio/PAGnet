@@ -1,0 +1,72 @@
+---
+title: "PAGnet: Pseudomonas aeruginosa Genomic network"
+author: "Hao Huang, Xiaolong Shao, Yingpeng Xie, Tingting Wang, Yingchao Zhang, Xin Wang, Xin Deng"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+
+vignette: >
+  %\VignetteIndexEntry{PAGnet:Pseudomonas aeruginosa genomic network}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE,
+                      fig.align   = 'center',
+                      fig.width   = 8,
+                      fig.height = 4)
+```
+
+##Abstract
+PAGnet is an R package to perform Master Regulator Analysis (MRA) in Pseudomonas aeruginosa Genomic netork (PAGnet).
+
+# Overview
+Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. Pseudomonas aeruginosa, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 19 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (Pseudomonas aeruginosa Genomic network) including 48 crosstalk targets.
+
+The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for Master Regulator Analysis (MRA) over a list of regulons from PAGnet. We also provide an online PAGnet platform was established to provide the analysis for these TFs and more virulence factors.
+
+```
+## loading packages
+library(PAGnet)
+```
+# Quick Start
+### Master Regulator Analysis in PAGnet
+
+The function `pagnet.mra` is used to perform MRA in PAGnet or user uploaded network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution.
+
+```{r}
+  library(PAGnet)
+
+  data(PAGnet)
+
+  #Use PAGnet as regulatory network
+  #Select T3SS related genes as signatures
+  #run MRA
+
+  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, pValueCutoff = 0.05,pAdjustMethod="BH")
+  mra_results
+```
+
+To output the MRA results, the user can use `write.csv` to output csv file.
+
+```{r}
+  ## write.csv(mra_results,"MRA_results.csv")
+```
+
+# Need helps?
+
+If you have any question/issue, please feel free to contact us.
+
+# Session Information
+```{r, echo=FALSE}
+sessionInfo()
+```
+
+# References
