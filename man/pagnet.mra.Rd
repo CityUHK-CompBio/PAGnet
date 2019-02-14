@@ -17,18 +17,12 @@ pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=t3ss, pValueCutoff=0.05
 }
 
 \examples{
-  data(Pavirnet_basicdata)
+  data(PAGnet)
 
   #Use PAGnet as regulatory network
-
-  PAGnet <- network_inf[,c(1,5)]
-  tf <- tf
-
   #Select T3SS related genes as signatures
-
-  t3ss <- signature_example
-
   #run MRA
+
   pagnet.mra(rnet=PAGnet,tflist=tf,signature = t3ss, pValueCutoff = 0.05,pAdjustMethod="BH")
 
 }
