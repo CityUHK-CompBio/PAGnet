@@ -51,7 +51,7 @@ pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=t3ss, pValueCutoff=0.05
   if(!is.null(pValueCutoff)){
     mra_results <- mra_results[which(mra_results$Pvalue < pValueCutoff),]
   }
-  mra_results[which(mra_results[,6] == 0),6] <- c("< 1e-4")
+  mra_results[which(mra_results$Pvalue == 0),"Pvalue"] <- c("< 1e-4")
 
   return(mra_results)
 
