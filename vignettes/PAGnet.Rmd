@@ -1,5 +1,5 @@
 ---
-title: "PAGnet: an integrated regulatory network in Pseudomonas aeruginosa"
+title: "PAGnet: an integrated genomic regulatory network in Pseudomonas aeruginosa."
 author: 
 - name: Hao Huang 
   affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
@@ -22,10 +22,10 @@ output:
           fig_width: 10
           fig_height: 10
         
-abstract: PAGnet is an R package to perform Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
+abstract: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
 
 vignette: >
-  %\VignetteIndexEntry{HTSanalyzeR2: An R package for gene set enrichment and network analysis of various high-throughput data}
+  %\VignetteIndexEntry{PAGnet: an integrated genomic regulatory network in Pseudomonas aeruginosa.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -50,7 +50,7 @@ library(PAGnet)
 # Quick Start
 
 ## Master Regulator Analysis
-The user can choose to use the default PAVIRnet or to upload their own regulatory network in a predefined format.
+The user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format.
 
 ```{r}
   library(PAGnet)
