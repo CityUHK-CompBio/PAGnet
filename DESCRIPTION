@@ -1,6 +1,6 @@
 Package: PAGnet
 Type: Package
-Title: PAGnet: an integrated regulatory network in Pseudomonas aeruginosa.
+Title: PAGnet: Pseudomonas aeruginosa genomic integrated regulatory network.
 Version: 0.1.0
 Author: Hao Huang, Xiaolong Shao, Yingpeng Xie, Tingting Wang, Yingchao Zhang, Xin Wang, Xin Deng
 Maintainer: Hao Huang <hahuang8-c@my.cityu.edu.hk>
