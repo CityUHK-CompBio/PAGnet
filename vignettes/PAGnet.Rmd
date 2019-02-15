@@ -24,6 +24,8 @@ output:
         
 abstract: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
 
+bibliography: bibliography.bib
+
 vignette: >
   %\VignetteIndexEntry{PAGnet: an integrated genomic regulatory network in Pseudomonas aeruginosa.}
   %\VignetteEngine{knitr::rmarkdown}
@@ -43,10 +45,22 @@ Regulatory networks including virulence-related transcriptional factors (TFs) de
 
 The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for Master Regulator Analysis (MRA) over a list of regulons from PAGnet. We also provide an online PAGnet platform to provide the analysis for these TFs and more virulence factors.
 
+Before starting to use this package, you need to install the following packages:
+
+```{r}
+library(shiny)
+library(shinythemes)
+library(scales)
+library(DT)
+```
+
+Then load the package:
+
 ```{r}
   ## loading package
   library(PAGnet)
 ```
+
 # Quick Start
 
 ## Master Regulator Analysis
@@ -64,12 +78,14 @@ A dataframe format of default **PAGnet** with two colmn transcription factors an
 ```
 
 The users also need to provide a character vector of TFs (or only interested TFs).
+
 ```{r}
   ## define transcription factors in regulatory network
   head(tf)
 ```
 
 A character vector of locus tag should be provide as signature genes.
+
 ```{r}
   ##Use QS related genes as signature genes
   head(qs)
@@ -87,14 +103,14 @@ The function `pagnet.mra` is used to perform MRA over provided regulatory networ
 
 ##Local shiny interface
 
-The function `pagnet.mra.interface` is used to call a local shiny interface to perform MRA similar to our onlie platform PAGnet. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from Pseudomonas Genome DB. Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
+The function `pagnet.mra.interface` is used to call a local shiny interface to perform MRA similar to our onlie platform PAGnet. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from [Pseudomonas Genome DB](http://www.pseudomonas.com/) (@winsor2015enhanced). Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
 
 ```
   ## call local shony interfact
   pagnet.mra.interface()
 ```
 
-!["Local shiny interface of PAGnet"](figures/localshiny1.jpg)
+![Local shiny interface of PAGnet](figures/localshiny1.jpg)
 
 # Need help?
 
