@@ -75,7 +75,7 @@ A character vector of locus tag should be provide as signature genes.
   head(qs)
 ```
 
-The function `pagnet.mra` is used to perform MRA over provided regulatory network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution. Having completed master regulator analysis, a table will be returned.
+The function `pagnet.mra` is used to perform MRA over provided regulatory network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution (with multiple hypothesis testing corrections). Having completed master regulator analysis, a table will be returned.
 
 ```{r}
   ## Perform MRA and return results
@@ -94,7 +94,7 @@ The function `pagnet.mra.interface` is used to call a local shiny interface to p
   pagnet.mra.interface()
 ```
 
-!["A local shiny interface of PAGnet"](figures/localshiny1.jpg)
+!["Local shiny interface of PAGnet"](figures/localshiny1.jpg)
 
 # Need help?
 

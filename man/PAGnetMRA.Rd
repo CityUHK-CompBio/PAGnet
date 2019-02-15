@@ -12,7 +12,7 @@
    \item{tflist}{a list of transcription factor in regulatory network.}
    \item{signature}{interested gene sets.}
    \item{pValueCutoff}{a single numeric value specifying the cutoff for p-values considered significant.}
-   \item{pAdjustMethod}{a single character value specifying the p-calue adjustment method to be used.}
+   \item{pAdjustMethod}{a single character value specifying the p-calue adjustment method to be used (see 'p.adjust' fro details). }
 
 }
 
@@ -23,7 +23,7 @@
   #Select quorum sensing (QS) related genes as signatures
   #run MRA
 
-  MRA_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, pValueCutoff = 0.05,pAdjustMethod="BH")
+  MRA_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, pValueCutoff = 0.05, pAdjustMethod="BH")
 
   #Having completed master regulator analysis, a table will be returned
   head(MRA_results)
