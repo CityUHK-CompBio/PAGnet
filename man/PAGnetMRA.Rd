@@ -1,6 +1,6 @@
 \name{pagnet.mra}
 \alias{pagnet.mra}
-\title{PAGnet: an integrated regulatory network in Pseudomonas aeruginosa}
+\title{PAGnet: Pseudomonas aeruginosa genomic integrated regulatory network}
 \usage{
   pagnet.mra(rnet=PAGnet, tflist=tf, signature=qs, pValueCutoff=0.05, pAdjustMethod=NULL)
 }

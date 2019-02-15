@@ -1,7 +1,7 @@
 # PAGnet
 Welcome to the hompage of **PAGnet** package!
 
-This package provides Master Regulator Analysis (MRA) in Pseudomonas aeruginosa genomic network (PAGnet).
+This package provides Master Regulator Analysis (MRA) in Pseudomonas aeruginosa genomic integrated regulatory network (PAGnet).
 
 ## Quick Installation
 

@@ -1,5 +1,5 @@
 ---
-title: "PAGnet: an integrated genomic regulatory network in Pseudomonas aeruginosa."
+title: "PAGnet: Pseudomonas aeruginosa genomic integrated regulatory network."
 author: 
 - name: Hao Huang 
   affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
@@ -22,7 +22,7 @@ output:
           fig_width: 10
           fig_height: 10
         
-abstract: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
+abstract: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa genomic integrated regulatory network (PAGnet).
 
 bibliography: bibliography.bib
 
@@ -41,7 +41,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE,
 
 
 # Overview
-Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. Pseudomonas aeruginosa, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 19 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (Pseudomonas aeruginosa Genomic network) including 48 crosstalk targets.
+Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. Pseudomonas aeruginosa, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 19 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (Pseudomonas aeruginosa genomic integrated regulatory network) including 48 crosstalk targets.
 
 The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for Master Regulator Analysis (MRA) over a list of regulons from PAGnet. We also provide an online PAGnet platform to provide the analysis for these TFs and more virulence factors.
 

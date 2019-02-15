@@ -15,7 +15,7 @@ names(network_P5) <- c("network_summary","targets_summary","vis.nodes","vis.link
 pagnet.mra.interface <- function(){
   ##############ui#########################
   ui <- fixedPage(
-    h3(strong("PAGnet:"),"Pseudomonas aeruginosa Genomic netork",
+    h3(strong("PAGnet:"),"Pseudomonas aeruginosa genomic integrated regulatory network",
        style = "font-family: 'Source Sans Pro';
        color: #123456; text-align: center;
        background-image: url('background-2.png');
