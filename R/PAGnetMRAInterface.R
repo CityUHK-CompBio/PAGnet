@@ -6,12 +6,13 @@ library("shinythemes")
 library("visNetwork")
 ###################################################
 ###############network summary#####################
-load("data/Pavirnet_basicdata.Rda")
+load("data/Pavirnet_basicdata.rda")
 targets_summary <- netfordownload
 colnames(targets_summary) <- c("TF ID","TF name","Target ID","Target name")
 network_P5 <- list(network_summary_P5,targets_summary,vis.nodes,vis.links)
 names(network_P5) <- c("network_summary","targets_summary","vis.nodes","vis.links")
-
+GO_hit_set <- read.delim("data/mra/Hit_sets.txt",header=F,sep="\t")
+whole_net <- read.delim("data/mra/PAVIRnet.txt",header=T,sep="\t")
 pagnet.mra.interface <- function(){
   ##############ui#########################
   ui <- fixedPage(
