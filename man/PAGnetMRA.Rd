@@ -2,7 +2,7 @@
 \alias{pagnet.mra}
 \title{PAGnet: an integrated regulatory network in Pseudomonas aeruginosa}
 \usage{
-pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=qs, pValueCutoff=0.05, pAdjustMethod=NULL)
+  pagnet.mra(rnet=PAGnet, tflist=tf, signature=qs, pValueCutoff=0.05, pAdjustMethod=NULL)
 }
 \description{
   This function perform master regulator analysis (MRA) over a list of regulons from the default PAGnet or user uploaded regulator network for identification of key transcription factors mediating a biological process or pathway.

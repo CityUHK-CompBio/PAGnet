@@ -44,8 +44,8 @@ Regulatory networks including virulence-related transcriptional factors (TFs) de
 The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for Master Regulator Analysis (MRA) over a list of regulons from PAGnet. We also provide an online PAGnet platform to provide the analysis for these TFs and more virulence factors.
 
 ```{r}
-## loading package
-library(PAGnet)
+  ## loading package
+  library(PAGnet)
 ```
 # Quick Start
 
@@ -89,8 +89,9 @@ The function `pagnet.mra` is used to perform MRA over provided regulatory networ
 
 The function `pagnet.mra.interface` is used to call a local shiny interface to perform MRA similar to our onlie platform PAGnet. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from Pseudomonas Genome DB. Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
 
-```{r}
-  # pagnet.mra.interface()
+```
+  ## call local shony interfact
+  pagnet.mra.interface()
 ```
 
 !["A local shiny interface of PAGnet"](figures/localshiny1.jpg)

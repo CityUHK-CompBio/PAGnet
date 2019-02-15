@@ -1,7 +1,7 @@
 
 ###################################################################################
 ###################Master Regulator Analysis based on PAGnet#######################
-#load("data/PAGnet.rda")
+load("data/PAGnet.rda")
 
 pagnet.mra <- function(rnet=PAGnet, tflist=tf, signature=qs, pValueCutoff=0.05, pAdjustMethod=NULL, minRegulonSize=5){
   universe <- unique(c(as.matrix(rnet[,1]),as.matrix(rnet[,2])))

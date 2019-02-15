@@ -1,11 +1,10 @@
 Package: PAGnet
 Type: Package
-Title: What the Package Does (Title Case)
+Title: PAGnet: an integrated regulatory network in Pseudomonas aeruginosa.
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Hao Huang, Xiaolong Shao, Yingpeng Xie, Tingting Wang, Yingchao Zhang, Xin Wang, Xin Deng
+Maintainer: Hao Huang <hahuang8-c@my.cityu.edu.hk>
+Description: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa Genomic netork (PAGnet).
+License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
