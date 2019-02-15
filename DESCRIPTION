@@ -8,3 +8,10 @@ Description: PAGnet is an R package to analyze genomic regulatory network in Pse
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
+Imports:
+  shiny,
+  scales,
+  DT,
+  shinythemes
+VignetteBuilder: knitr
+Depends: R(>= 3.5)

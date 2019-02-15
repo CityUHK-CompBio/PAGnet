@@ -1,9 +1,9 @@
 
-library("shiny")
-library("ggplot2")
-library("scales")
-library("shinythemes")
-library("visNetwork")
+library(shiny)
+#library("ggplot2")
+library(scales)
+library(shinythemes)
+#library("visNetwork")
 ###################################################
 ###############network summary#####################
 load("data/Pavirnet_basicdata.rda")
