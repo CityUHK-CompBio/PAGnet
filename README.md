@@ -14,7 +14,7 @@ Please refer to the following commands to install **PAGnet**
 
 install.packages("devtools")
 
-devtools::install_github("huanghalone/PAGnet", dependencies=TRUE)
+devtools::install_github("CityUHK-CompBio/PAGnet", dependencies=TRUE)
 
 ```
 
@@ -47,7 +47,7 @@ data(PAGnet)
 # Master Regulator Analysis
 ## Use QS related genes as signature genes
  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, 
-                            pValueCutoff = 0.05,pAdjustMethod="BH")
+                            pValueCutoff = 0.05)
 # The results will be returned
 ```
 **PAGnet** also provides a local shiny interface to perform MRA in PAGnet with signature gene sets in Gene Ontology (GO) and KEGG databases obtained from Pseudomonas Genome DB.
@@ -58,8 +58,8 @@ pagnet.mra.interface()
 
 ![Local shiny interface of PAGnet](vignettes/figures/localshiny1.jpg)
 
-### For more details, pelease refer to our [vignette](https://github.com/huanghalone/PAGnet/blob/master/vignettes/PAGnet.pdf)
+### For more details, pelease refer to our [vignette](https://github.com/CityUHK-CompBio/PAGnet/blob/master/vignettes/PAGnet.pdf)
 
 ## Getting help
 
-Should you have any questions about this package, you can either email to the developers listed in the DESCRIPTION part of this package or create an issue in the [issue part](https://github.com/huanghalone/PAGnet/issues).
+Should you have any questions about this package, you can either email to the developers listed in the DESCRIPTION part of this package or create an issue in the [issue part](https://github.com/CityUHK-CompBio/PAGnet/issues).
