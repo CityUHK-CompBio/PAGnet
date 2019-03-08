@@ -1,4 +1,4 @@
-
+###################################################
 library("shiny")
 library("ggplot2")
 library("scales")
@@ -6,38 +6,35 @@ library("shinythemes")
 library("visNetwork")
 ###################################################
 ###############network summary#####################
-load("data/Pavirnet_basicdata.Rda")
+load("data/PAGnet.rda")
 targets_summary <- netfordownload
+rownames(nodes_temp) <- nodes_temp[,1]
 colnames(targets_summary) <- c("TF ID","TF name","Target ID","Target name")
 network_P5 <- list(network_summary_P5,targets_summary,vis.nodes,vis.links)
 names(network_P5) <- c("network_summary","targets_summary","vis.nodes","vis.links")
 
-GO_hit_set <- read.delim("data/mra/Hit_sets.txt",header=F,sep="\t")
-whole_net <- read.delim("data/mra/PAVIRnet.txt",header=T,sep="\t")
-  ##############ui#########################
-  ui <- fixedPage(
-  h3(strong("PAVIRnet:"),span(strong("P"),style = "word-spacing:-8px"),"seudomonas",
+
+##############ui#########################
+ui <- fixedPage(
+  h3(strong("PAGnet:"),span(strong("P"),style = "word-spacing:-8px"),"seudomonas",
      span(strong("a"),style = "word-spacing:-8px"),"eruginosa",
-     span(strong("V"),style = "word-spacing:-8px"),"irulence-related",
-     span(strong("I"),style = "word-spacing:-8px"),"ntegrated",
-     span(strong("R"),style = "word-spacing:-8px"),"egulatory",
-     span(strong("net"),style = "word-spacing:-8px"), "work",
+     span(strong("G"),style = "word-spacing:-8px"),"enomic integrated regulatory network",
      style = "font-family: 'Source Sans Pro';
      color: #123456; text-align: center;
-     background-image: url('background.png');
+     background-image: url('background-2.png');
      padding: 20px"
   ),
   navbarPage("",
              tabPanel(h4("Introduction"),
-                      tags$img(src = "homepage.png"),
+                      tags$img(src = "homepage.jpg"),
                       h5("Copyright (c) 2018, Hao Huang of Dr. Xin Wang's Lab all rights reserved.",style = "text-align: center")
              ),
              ####################Network page###########################
-             tabPanel(h4("PAVIRnet"),
+             tabPanel(h4("PAGnet"),
                       fluidRow(
                         sidebarLayout(
                           sidebarPanel(
-                            tags$h3("PAVIRnet"),
+                            tags$h3("PAGnet"),
                             #network paramaters#
                             # checkboxInput("network_showall", "Display all Transcription Factors", TRUE),
                             radioButtons("network_show", "Subnetwork filtering",
@@ -83,8 +80,8 @@ whole_net <- read.delim("data/mra/PAVIRnet.txt",header=T,sep="\t")
                             sidebarPanel(
 
                               # Input: Select a file ----
-                              radioButtons("Interest_set", "1. Choose PAVIRnet or upload your own network",
-                                           c("PAVIRnet" = "online_interest_set",
+                              radioButtons("Interest_set", "1. Choose PAGnet or upload your own network",
+                                           c("PAGnet" = "online_interest_set",
                                              "Upload your own network" = "local_interest_set"
                                            ),
                                            selected = "online_interest_set"
@@ -140,16 +137,17 @@ whole_net <- read.delim("data/mra/PAVIRnet.txt",header=T,sep="\t")
              #                  actionButton("update", "Search")
              #         ),
              tabPanel(h4("Download"),
-                      titlePanel("PAVIRnet V1.0 (updated on 20180924)"),
+                      titlePanel("PAGnet V1.1 (updated on 20190307)"),
 
                       # Button
                       downloadButton("downloadData", "Download")
              ),
              tabPanel(h4("Help"),
-                      tags$img(src = "Help_MRA.png")
+                      tags$img(src = "Help.png")
              ),
              tabPanel(h4("Contact us"),
-                      h2("Contact Us"),
+
+                      h2("Contact Us",align="center"),
                       wellPanel(
                         h4("If you have any question or comments, please feel free to contact us."),
                         br(),
@@ -167,8 +165,15 @@ whole_net <- read.delim("data/mra/PAVIRnet.txt",header=T,sep="\t")
                         h4(strong("Address:"), "1B-102, 1/F, Block 1,To Yuen Building, City University of Hong Kong, 31 To Yuen Street ,
                            Kowloon Tong , Hong Kong SAR"),
                         br(),
-                        h4(strong("Phone:"),"(852) 3442 2367")
-                        )
+                        h4(strong("Phone:"),"(852) 3442 2367"),style = "background: #F0FFF0"
+                        ),
+                      br(),
+                      br(),
+                      h2("Declaration",align="center"),
+                      wellPanel(
+                        h4("We do not store or share any user-uploaded data and that we will protect the confidentiality and ensure compliance with academic ethics.",align="center"),
+                        style = "background: #FFE4E1"
+                      )
                       )
 
   )
@@ -199,7 +204,7 @@ server <- function(input, output) {
       targets_count <- c()
 
       for(j in 1 : length(input$network_showpart)){
-        iRN <- read.delim(paste("data/Regulon/",input$network_showpart[j],"_regulatory_network.txt",sep=""),header=F,sep="\t")
+        iRN <- whole_net[which(whole_net[,2] == input$network_showpart[j]),]
         targets_count_temp <- data.frame(as.matrix(iRN[1,1]),as.matrix(iRN[1,2]),dim(iRN)[1])
         RN <- rbind(RN,iRN)
         targets_count <- rbind(targets_count,targets_count_temp)
@@ -232,14 +237,14 @@ server <- function(input, output) {
       vis.nodes$label  <- vis.nodes$name
       vis.nodes$color.background <- c("slategrey")
 
-      vis.nodes$color.background[which(vis.nodes$expression == -1)] <- c("#4682B4")
-      vis.nodes$color.background[which(vis.nodes$expression == 1)] <- c("#F9CF9A")
+      vis.nodes$color.background[which(vis.nodes$expression < 0)] <- c("#4682B4")
+      vis.nodes$color.background[which(vis.nodes$expression > 0)] <- c("#F9CF9A")
       vis.nodes$color.background[which(vis.nodes$weight == 10)] <- c("darkred")
       vis.nodes$color.border <- "white"
 
       vis.links$color<- "gray"
-      vis.links$color[which(links_temp1$type == -1)] <- c("#CD5C5C")
-      vis.links$color[which(links_temp1$type == 1)] <- c("#2E8B57")
+      vis.links$color[which(links_temp1$type < 0)] <- c("#CD5C5C")
+      vis.links$color[which(links_temp1$type > 0)] <- c("#2E8B57")
       # line color
 
       vis.links$arrows <- "to" # arrows: 'from', 'to', or 'middle'
@@ -341,7 +346,7 @@ server <- function(input, output) {
 
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste("PAVIRnet", ".csv", sep = "")
+      paste("PAGnet", ".csv", sep = "")
     },
     content = function(file) {
       write.csv(netfordownload,file, row.names = FALSE,col.names =FALSE)
@@ -365,7 +370,9 @@ server <- function(input, output) {
     }
   )
 }
-  ###################APP##################
 
-  shinyApp(ui = ui, server = server)
+###################APP##################
+
+shinyApp(ui = ui, server = server)
+#rsconnect::deployApp('/data/home/Hao/workspace/DrDeng/shiny/PAVIRnet/',account = "compbio-cityuhk")
 
