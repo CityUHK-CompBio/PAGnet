@@ -1,5 +1,5 @@
 ---
-title: "PAGnet: Pseudomonas aeruginosa genomic integrated regulatory network."
+title: "PAGnet: *Pseudomonas* *aeruginosa* genomic integrated regulatory network."
 author: 
 - name: Hao Huang 
   affiliation: Department of Biomedical Sciences, City University of Hong Kong, Hong Kong
@@ -22,12 +22,12 @@ output:
           fig_width: 10
           fig_height: 10
         
-abstract: PAGnet is an R package to analyze genomic regulatory network in Pseudomonas aerugionsa. This package provides Master Regulator Analysis (MRA) for identification of key transcription factors mediating a biological process or pathway in Pseudomonas aeruginosa genomic integrated regulatory network (PAGnet).
+abstract: R package PAGnet is an R package to provide the user with *Pseudomonas* *aeruginosa* genomic integrated regulatory network visualization, subnetwork filtering and master regulator analysis in his/her comoputer, consistent with the functionality which deployed on the online website (http://pagnetwork.org). The package could facilitate visualization and exploration of regulatory network, as well as master regulator analysis for identification of key transcription factors mediating a biological process or pathway. 
 
 bibliography: bibliography.bib
 
 vignette: >
-  %\VignetteIndexEntry{PAGnet: an integrated genomic regulatory network in Pseudomonas aeruginosa.}
+  %\VignetteIndexEntry{PAGnet: an integrated genomic regulatory network in *Pseudomonas* *aeruginosa*.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -41,84 +41,127 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE,
 
 
 # Overview
-Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. Pseudomonas aeruginosa, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 19 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (Pseudomonas aeruginosa genomic integrated regulatory network) including 48 crosstalk targets.
+Regulatory networks including virulence-related transcriptional factors (TFs) determine bacterial pathogenicity in response to different environmental cues. *Pseudomonas* *aeruginosa*, a Gram-negative opportunistic pathogen of humans, recruits numerous TFs in quorum sensing (QS) system, type III secretion system (T3SS) and Type VI secretion system (T6SS) to mediate the pathogenicity. Although many virulence-related TFs have been illustrated individually, very little is known about their crosstalks and regulatory network. Here, based on chromatin immunoprecipitation coupled with high-throughput sequencing (ChIP-seq) and transcriptome profiling (RNA-seq), we primarily focused on understanding the crosstalks of 20 virulence-related TFs, which led to construction of a virulence regulatory network named PAGnet (*Pseudomonas* *aeruginosa* genomic integrated regulatory network) including 82 crosstalk targets.
 
-The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for Master Regulator Analysis (MRA) over a list of regulons from PAGnet. We also provide an online PAGnet platform to provide the analysis for these TFs and more virulence factors.
+The PAGnet uncovered the intricate mechanism of virulence regulation and revealed master regulators in QS, T3SS and T6SS pathways. The package **PAGnet** is designed for network visualization, subnetwork filtering and master regulator analysis locally by running a local shniy GUI within R. In addition, the master regulator analysis can be performed in the R console without runnning the shiny GUI to provide more flexibility.
 
 Before starting to use this package, you need to install the following packages:
 
+
 ```{r}
+
 library(shiny)
 library(shinythemes)
 library(scales)
-library(DT)
+
 ```
+
 
 Then load the package:
 
+
 ```{r}
+
   ## loading package
+
   library(PAGnet)
+
 ```
+
 
 # Quick Start
 
 ## Master Regulator Analysis
+
 The user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format (Locus Tag). 
 
 A dataframe format of default **PAGnet** with two colmn transcription factors and targets is provided for MRA, user could also their own regulatory network in same format as input.
+
 
 ```{r}
 
   data(PAGnet)
 
   ##Use defaultPAGnet as regulatory network
-  head(PAGnet)
+
+  head(pagnet)
 
 ```
+
 
 The users also need to provide a character vector of TFs (or only interested TFs).
 
+
 ```{r}
+
   ## define transcription factors in regulatory network
+
   head(tf)
+
 ```
+
 
 A character vector of locus tag should be provide as signature genes.
 
+
 ```{r}
+
   ##Use QS related genes as signature genes
+
   head(qs)
+
 ```
 
 The function `pagnet.mra` is used to perform MRA over provided regulatory network. The MRA computes the overlap between the transcriptional regulatory unities (regulons) and the input signature genes using the hypergeometric distribution (with multiple hypothesis testing corrections). Having completed master regulator analysis, a table will be returned.
 
+
 ```{r}
   ## Perform MRA and return results
-  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, 
-                            pValueCutoff = 0.05,pAdjustMethod="BH")
+
+  mra_results <- pagnet.mra(rnet=pagnet,tflist=tf,signature = qs, 
+                            pValueCutoff = 0.05)
 
   mra_results
+  
 ```
+
 
 ##Local shiny interface
 
-The function `pagnet.mra.interface` is used to call a local shiny interface to perform MRA similar to our onlie platform PAGnet. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from [Pseudomonas Genome DB](http://www.pseudomonas.com/) (@winsor2015enhanced). Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
+The function `pagnet.mra.interface` is used to call **local shiny GUI**. 
+
 
 ```
   ## call local shony interfact
   pagnet.mra.interface()
+  
 ```
 
-![Local shiny interface of PAGnet](figures/localshiny1.jpg)
+![A screenshot of local shiny interface of PAGnet](figures/localshiny1.jpg)
+
+
+The shiny GUI provides visualization and exploration of PAGnet. It allows the user to filter the full network by selecting one or multiple transcription factor(s) to obtain a subnetwork of interest. A brief summary of the subnetwork is also provided with information about the transcription factors and their target genes. 
+
+
+
+![Visualization of PAGnet in local shiny GUI](figures/localshiny2.jpg)
+
+
+![Master Regulator Analysis](figures/localshiny3.jpg)
+
+The local shiny GUI also provides master regulator analysis for identification of key transcription factors mediating a biological process or pathway. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from [Pseudomonas Genome DB](http://www.pseudomonas.com/) (@winsor2015enhanced). Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
+
+
 
 # Need help?
 
 If you have any question/issue, please feel free to contact us.
+
 ```
 Dr. Xin Deng (xindeng@cityu.edu.hk)
 ```
 or
+
 ```
 Dr. Xin Wang (xin.wang@cityu.edu.hk)
 ```
