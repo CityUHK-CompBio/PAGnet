@@ -39,15 +39,19 @@ library(PAGnet)
 Start analysis:
 ```
 # prepare input for analysis
+
 data(PAGnet)
+
 ## Input 1: 'rnet', a dataframe with two colmn (transcription factors and target genes) as regulatory network
 ## Input 2: 'tflist', the users also need to provide a character vector of TFs (or only interested TFs)
 ## Input 3: 'signature',  a character vector of locus tag should be provide as signature genes
 
 # Master Regulator Analysis
 ## Use QS related genes as signature genes
+
  mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, 
                             pValueCutoff = 0.05)
+                            
 # The results will be returned
 ```
 **PAGnet** also provides a local shiny interface to perform MRA in PAGnet with signature gene sets in Gene Ontology (GO) and KEGG databases obtained from Pseudomonas Genome DB.
