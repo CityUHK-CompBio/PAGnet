@@ -6,7 +6,7 @@ library("shinythemes")
 library("visNetwork")
 ###################################################
 ###############network summary#####################
-load("data/PAGnet.rda")
+load("data/pagnet.rda")
 targets_summary <- netfordownload
 rownames(nodes_temp) <- nodes_temp[,1]
 colnames(targets_summary) <- c("TF ID","TF name","Target ID","Target name")
