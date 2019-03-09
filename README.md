@@ -47,9 +47,9 @@ data(PAGnet)
 ## Input 3: 'signature',  a character vector of locus tag should be provide as signature genes
 
 # Master Regulator Analysis
-## Use QS related genes as signature genes
+## Use QS related genes as example signature genes
 
- mra_results <- pagnet.mra(rnet=PAGnet,tflist=tf,signature = qs, 
+ mra_results <- pagnet.mra(rnet=pagnet,tflist=tf,signature = qs, 
                             pValueCutoff = 0.05)
                             
 # The results will be returned
