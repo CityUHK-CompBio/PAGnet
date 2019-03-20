@@ -128,7 +128,7 @@ The function `pagnet.mra` is used to perform MRA over provided regulatory networ
 
 ##Local shiny interface
 
-The function `pagnet.mra.interface` is used to call **local shiny GUI**. 
+The function `pagnet.mra.interface` is used to call **local shiny GUI** (Figure 1). 
 
 
 ```
@@ -140,16 +140,19 @@ The function `pagnet.mra.interface` is used to call **local shiny GUI**.
 ![A screenshot of local shiny interface of PAGnet](figures/localshiny1.jpg)
 
 
-The shiny GUI provides visualization and exploration of PAGnet. It allows the user to filter the full network by selecting one or multiple transcription factor(s) to obtain a subnetwork of interest. A brief summary of the subnetwork is also provided with information about the transcription factors and their target genes. 
+The shiny GUI provides visualization and exploration of PAGnet (Figure 2). It allows the user to filter the full network by selecting one or multiple transcription factor(s) to obtain a subnetwork of interest. A brief summary of the subnetwork is also provided with information about the transcription factors and their target genes. 
 
 
 
 ![Visualization of PAGnet in local shiny GUI](figures/localshiny2.jpg)
 
 
+The local shiny GUI also provides master regulator analysis for identification of key transcription factors mediating a biological process or pathway (Figure 3). First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from [Pseudomonas Genome DB](http://www.pseudomonas.com/) (@winsor2015enhanced). Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
+
+
 ![Master Regulator Analysis](figures/localshiny3.jpg)
 
-The local shiny GUI also provides master regulator analysis for identification of key transcription factors mediating a biological process or pathway. First, the user can choose to use the default PAGnet or to upload their own regulatory network in a predefined format. Second, the user needs to specify a gene signature associated with a biological function or pathway of interest, either by selecting a gene set from public databases or uploading a user-customized gene list. In the current version, the platform provides gene sets in Gene Ontology (GO) and KEGG databases obtained from [Pseudomonas Genome DB](http://www.pseudomonas.com/) (@winsor2015enhanced). Having completed master regulator analysis, a table will be returned with information about each transcription factor’s corresponding gene ID, gene name, number of target genes, total number of hits (all signature genes in the network), observed hits (signature genes in the TF’s regulon), and a p-value calculated based on a hypergeometric test. The table is sorted according to the statistical significance indicated by the p-values, and the top significant TFs can be prioritized as master regulators.
+
 
 
 
